@@ -3,13 +3,14 @@ plugins {
     id("kotlin-android")
     id("kotlin-kapt")
     id("com.vanniktech.maven.publish")
+    alias(libs.plugins.compose.plugin)
 }
 
 android {
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
-        minSdk = 21
+        minSdk = 28
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -27,10 +28,6 @@ android {
         freeCompilerArgs = freeCompilerArgs + listOf(
             "-Xexplicit-api=strict"
         )
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion =
-            libs.versions.androidx.compose.compiler.get()
     }
     sourceSets {
         getByName("main").java.srcDir("src/main/kotlin")

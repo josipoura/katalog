@@ -2,15 +2,16 @@ plugins {
     id("com.android.application")
     id("kotlin-android")
     id("kotlin-kapt")
+    alias(libs.plugins.compose.plugin)
 }
 
 android {
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.moriatsushi.katalog.android_sample"
-        minSdk = 21
-        targetSdk = 33
+        minSdk = 28
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0.0"
 
