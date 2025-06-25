@@ -17,10 +17,11 @@ import androidx.compose.ui.unit.dp
 @Composable
 internal fun KatalogTopAppBar(
     title: String,
+    modifier: Modifier = Modifier,
     isVisibleDivider: Boolean = true,
     navigationIcon: @Composable (() -> Unit)? = null,
 ) {
-    Box {
+    Box(modifier) {
         Dissolve(
             targetState = (title to navigationIcon),
         ) { (title, navigationIcon) ->

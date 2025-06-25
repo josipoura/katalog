@@ -1,5 +1,7 @@
 package com.moriatsushi.katalog.compose.page
 
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Scaffold
@@ -11,6 +13,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
 import com.moriatsushi.katalog.compose.navigation.DiscoveryDestination
 import com.moriatsushi.katalog.compose.navigation.NavController
 import com.moriatsushi.katalog.compose.navigation.NavRoot
@@ -41,6 +44,7 @@ internal fun DiscoveryPage(
     }
 
     Scaffold(
+        modifier = Modifier.statusBarsPadding(),
         topBar = {
             DiscoveryTopAppBar(
                 title = title,
@@ -48,10 +52,11 @@ internal fun DiscoveryPage(
                 isScrollTop = isScrollTop,
                 onClickBack = onClickBack,
             )
-        },
-    ) {
+        }
+    ) { paddingValues ->
         NavRoot(navController) { state ->
             DiscoveryPageSelector(
+                modifier = Modifier.padding(paddingValues),
                 destination = state.destination,
                 katalog = katalog,
                 extNavState = extNavState,
@@ -72,8 +77,10 @@ private fun DiscoveryTopAppBar(
     isPageTop: Boolean,
     isScrollTop: Boolean,
     onClickBack: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     KatalogTopAppBar(
+        modifier = modifier,
         title = title,
         isVisibleDivider = !isScrollTop,
         navigationIcon = if (isPageTop) {
@@ -99,18 +106,22 @@ private fun DiscoveryPageSelector(
     extNavState: ExtNavState,
     onChangeIsTop: (Boolean) -> Unit,
     onClickItem: (item: CatalogItem) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     when (destination) {
         is DiscoveryDestination.Top -> {
             TopPage(
+                modifier = modifier,
                 katalog = katalog,
                 extNavState = extNavState,
                 onChangeIsTop = onChangeIsTop,
                 onClickItem = onClickItem,
             )
         }
+
         is DiscoveryDestination.Group -> {
             GroupPage(
+                modifier = modifier,
                 katalog = katalog,
                 group = destination.group,
                 extNavState = extNavState,

@@ -1,11 +1,11 @@
 package com.moriatsushi.katalog.compose.page
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
-import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.runtime.Composable
@@ -25,19 +25,19 @@ internal fun PreviewPage(
     extNavState: ExtNavState,
     onClickClose: () -> Unit,
 ) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(MaterialTheme.colors.background),
-    ) {
-        PreviewTopAppBar(
-            name = component.name,
-            onClickClose = onClickClose,
-        )
+    Scaffold(
+        modifier = Modifier.statusBarsPadding(),
+        topBar = {
+            PreviewTopAppBar(
+                name = component.name,
+                onClickClose = onClickClose,
+            )
+        }
+    ) { padding ->
         Preview(
+            modifier = Modifier.fillMaxSize().padding(padding),
             extensions = extensions,
             extNavState = extNavState,
-            modifier = Modifier.fillMaxSize(),
             clickable = true,
             definition = component.definition,
         )

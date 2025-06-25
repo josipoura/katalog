@@ -20,8 +20,9 @@ import com.moriatsushi.katalog.ext.ExtNavState
 internal fun TopPage(
     katalog: Katalog,
     extNavState: ExtNavState,
-    onChangeIsTop: (isTop: Boolean) -> Unit = {},
     onClickItem: (item: CatalogItem) -> Unit,
+    modifier: Modifier = Modifier,
+    onChangeIsTop: (isTop: Boolean) -> Unit = {},
 ) {
     val lazyListState = rememberLazyListState()
     val isTop by lazyListState.rememberIsTop()
@@ -29,7 +30,7 @@ internal fun TopPage(
         onChangeIsTop(isTop)
     }
     Surface(
-        modifier = Modifier.fillMaxSize(),
+        modifier = modifier.fillMaxSize(),
         color = MaterialTheme.colors.background,
     ) {
         CatalogItemList(
