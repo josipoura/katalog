@@ -43,6 +43,7 @@ android {
 dependencies {
     implementation(kotlin("stdlib"))
     implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.kotlinx.serialization.json)
 
     implementation(libs.androidx.core)
     implementation(libs.androidx.activity)
