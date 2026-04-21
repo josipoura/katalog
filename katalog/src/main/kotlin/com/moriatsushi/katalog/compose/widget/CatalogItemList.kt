@@ -29,6 +29,7 @@ internal fun CatalogItemList(
     extNavState: ExtNavState,
     onClick: (item: CatalogItem) -> Unit,
     lazyListState: LazyListState = rememberLazyListState(),
+    showPreview: Boolean = true,
 ) {
     if (list.isEmpty()) {
         Empty()
@@ -44,6 +45,7 @@ internal fun CatalogItemList(
                 extensions = extensions,
                 extNavState = extNavState,
                 onClick = onClick,
+                showPreview = showPreview,
             )
         }
         item {

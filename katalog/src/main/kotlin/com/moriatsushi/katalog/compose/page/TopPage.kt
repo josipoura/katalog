@@ -39,6 +39,7 @@ internal fun TopPage(
             extNavState = extNavState,
             onClick = onClickItem,
             lazyListState = lazyListState,
+            showPreview = false,
         )
     }
 }

@@ -37,6 +37,7 @@ internal fun CatalogItemRow(
     extensions: Extensions,
     extNavState: ExtNavState,
     onClick: (CatalogItem) -> Unit,
+    showPreview: Boolean = true,
 ) {
     val icon = when (item) {
         is CatalogItem.Component -> Icons.Filled.Widgets
@@ -51,18 +52,20 @@ internal fun CatalogItemRow(
             name = item.name,
             icon = icon,
         )
-        when (item) {
-            is CatalogItem.Component -> ComponentRow(
-                component = item,
-                extensions = extensions,
-                extNavState = extNavState,
-            )
-            is CatalogItem.Group -> GroupRow(
-                group = item,
-                onClick = onClick,
-                extensions = extensions,
-                extNavState = extNavState,
-            )
+        if (showPreview) {
+            when (item) {
+                is CatalogItem.Component -> ComponentRow(
+                    component = item,
+                    extensions = extensions,
+                    extNavState = extNavState,
+                )
+                is CatalogItem.Group -> GroupRow(
+                    group = item,
+                    onClick = onClick,
+                    extensions = extensions,
+                    extNavState = extNavState,
+                )
+            }
         }
         ItemDivider()
     }
@@ -99,7 +102,7 @@ private fun ComponentRow(
         val width = if (maxWidth > 600.dp) {
             420.dp
         } else {
-            maxWidth
+            this.maxWidth
         }
         CatalogItemWrapper(
             modifier = Modifier
