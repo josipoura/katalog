@@ -4,6 +4,7 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -20,6 +21,7 @@ internal fun KatalogTopAppBar(
     modifier: Modifier = Modifier,
     isVisibleDivider: Boolean = true,
     navigationIcon: @Composable (() -> Unit)? = null,
+    actions: @Composable RowScope.() -> Unit = {},
 ) {
     Box(modifier) {
         Dissolve(
@@ -37,6 +39,7 @@ internal fun KatalogTopAppBar(
                 backgroundColor = MaterialTheme.colors.background,
                 contentColor = MaterialTheme.colors.onBackground,
                 navigationIcon = navigationIcon,
+                actions = actions,
             )
         }
         AnimatedVisibility(
