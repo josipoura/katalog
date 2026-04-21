@@ -36,10 +36,12 @@ internal fun CatalogItemList(
         return
     }
 
+    val sortedList = list.sortedBy { it.name.lowercase() }
+
     LazyColumn(
         state = lazyListState,
     ) {
-        items(list) {
+        items(sortedList) {
             CatalogItemRow(
                 item = it,
                 extensions = extensions,
