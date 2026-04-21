@@ -36,10 +36,12 @@ internal fun DiscoveryPage(
     var isScrollTop by remember {
         mutableStateOf(true)
     }
-    val title by derivedStateOf {
-        when (val destination = navController.current.destination) {
-            is DiscoveryDestination.Group -> destination.group.name
-            is DiscoveryDestination.Top -> katalog.title
+    val title by remember {
+        derivedStateOf {
+            when (val destination = navController.current.destination) {
+                is DiscoveryDestination.Group -> destination.group.name
+                is DiscoveryDestination.Top -> katalog.title
+            }
         }
     }
 

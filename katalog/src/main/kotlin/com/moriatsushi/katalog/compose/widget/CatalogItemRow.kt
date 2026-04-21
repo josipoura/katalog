@@ -1,6 +1,7 @@
 package com.moriatsushi.katalog.compose.widget
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -51,7 +52,7 @@ internal fun CatalogItemRow(
     ) {
         ItemTitle(
             name = item.name,
-            icon = icon,
+            icon = if (showPreview) icon else null,
         )
         if (showPreview) {
             when (item) {
@@ -123,23 +124,24 @@ private fun ComponentRow(
 @Composable
 private fun ItemTitle(
     name: String,
-    icon: ImageVector,
+    icon: ImageVector?,
 ) {
     Row(
         modifier = Modifier
-            .padding(vertical = 14.dp, horizontal = defaultPadding),
+            .padding(vertical = defaultPadding, horizontal = defaultPadding),
         verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
     ) {
-        Icon(
-            imageVector = icon,
-            contentDescription = "More",
-            tint = MaterialTheme.colors.onBackground.copy(alpha = 0.7F),
-        )
+        if (icon != null) {
+            Icon(
+                imageVector = icon,
+                contentDescription = "More",
+                tint = MaterialTheme.colors.onBackground.copy(alpha = 0.7F),
+            )
+        }
         Text(
             text = name,
-            modifier = Modifier
-                .weight(1F)
-                .padding(horizontal = 8.dp),
+            modifier = Modifier.weight(1F),
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
             color = MaterialTheme.colors.onBackground.copy(alpha = 0.8F),
